@@ -274,22 +274,22 @@ void GeotaggedImagesPlugin::OnNewFrame(const unsigned char * image)
 
   // Send indication to GCS
   mavlink_message_t msg;
-  mavlink_msg_camera_image_captured_pack_chan(1,
-                                   MAV_COMP_ID_CAMERA,
-                                   MAVLINK_COMM_1,
-                                   &msg,
-                                   currentTime.Double() * 1e3, // time boot ms
-                                   currentTime.Double() * 1e6, // time UTC
-                                   1, // camera ID
-                                   lat * 1e7,
-                                   lon * 1e7,
-                                   lastGpsPosition_.z(),
-                                   0, // relative alt
-                                   0, // q[4]
-                                   imageCounter_,
-                                   1, // result
-                                   0 // file_url
-                                   );
+  // mavlink_msg_camera_image_captured_pack_chan(1,
+  //                                  MAV_COMP_ID_CAMERA,
+  //                                  MAVLINK_COMM_1,
+  //                                  &msg,
+  //                                  currentTime.Double() * 1e3, // time boot ms
+  //                                  currentTime.Double() * 1e6, // time UTC
+  //                                  1, // camera ID
+  //                                  lat * 1e7,
+  //                                  lon * 1e7,
+  //                                  lastGpsPosition_.z(),
+  //                                  0, // relative alt
+  //                                  0, // q[4]
+  //                                  imageCounter_,
+  //                                  1, // result
+  //                                  0 // file_url
+  //                                  );
 
   // Send to GCS port directly
   send_mavlink_message(&msg, 14550);
@@ -341,16 +341,16 @@ void GeotaggedImagesPlugin::handle_message(mavlink_message_t *msg)
         TakePicture();
       }
       mavlink_message_t msg;
-      mavlink_msg_command_ack_pack_chan(1,
-                                       MAV_COMP_ID_CAMERA,
-                                       MAVLINK_COMM_1,
-                                       &msg,
-                                       MAV_CMD_IMAGE_START_CAPTURE,
-                                       MAV_RESULT_ACCEPTED,
-                                       100,
-                                       0,
-                                       msg.sysid,
-                                       msg.compid);
+      // mavlink_msg_command_ack_pack_chan(1,
+      //                                  MAV_COMP_ID_CAMERA,
+      //                                  MAVLINK_COMM_1,
+      //                                  &msg,
+      //                                  MAV_CMD_IMAGE_START_CAPTURE,
+      //                                  MAV_RESULT_ACCEPTED,
+      //                                  100,
+      //                                  0,
+      //                                  msg.sysid,
+      //                                  msg.compid);
       send_mavlink_message(&msg);
     }
     break;
